@@ -49,6 +49,8 @@ class Parking:
 
             heappush(self.available_slots, slot_number)
             self.age_directory[driver.get_driver_age()].remove(driver)
+            if not self.age_directory[driver.get_driver_age()]:
+                del self.age_directory[driver.get_driver_age()]
             del self.vehicles_parked[driver.get_vehicle_number()]
 
             return f'Slot number {slot_number} vacated, the car with vehicle registration number "{driver.get_vehicle_number()}" left the space, the driver of the car was of age {driver.get_driver_age()}'

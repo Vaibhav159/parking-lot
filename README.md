@@ -26,7 +26,9 @@ sudo apt install python3.8
 ```
 
 ```python
-python3 allocation.py <input.txt> output.txt
+python3 allocation.py <inputs/input.txt> outputs/output.txt
+python3 allocation.py <inputs/input1.txt> outputs/output1.txt
+python3 allocation.py <inputs/input2.txt> outputs/output2.txt
 ```
 
 ## Assumptions
@@ -43,6 +45,10 @@ python3 allocation.py <input.txt> output.txt
 3. If Parking is full, output for future park commands will be 'Parking Full, Car with vehicle registration number "{vehicle_number}" cant be parked'.
 4. While searching for drivers with age or vehicle number, if no cars are found, output would be "Driver / Vehicle Not Found".
 5. If leave slot_number is vacant, output will be “Slot already vacant”.
+
+## Note:
+
+Last Line of the input https://gist.github.com/tarungarg546/6200f936f2208bad5d9d0e053d773489 gives "Vehicle Not Found" in comparsion to ""(empty) line is sample output.
 
 ### Author
 
