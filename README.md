@@ -21,6 +21,8 @@ We interact with the system via a file-based input system, i.e. it should accept
 
 ## Running the Code
 
+Installation of Python.
+
 ```bash
 sudo apt install python3.8
 ```
