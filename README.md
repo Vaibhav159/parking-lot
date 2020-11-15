@@ -42,6 +42,7 @@ python3 allocation.py <input.txt> output.txt
 2. If Invalid command is provided, program will break from the execution.
 3. If Parking is full, output for future park commands will be 'Parking Full, Car with vehicle registration number "{vehicle_number}" cant be parked'.
 4. While searching for drivers with age or vehicle number, if no cars are found, output would be "Driver / Vehicle Not Found".
+5. If leave slot_number is vacant, output will be “Slot already vacant”.
 
 ### Author
 
