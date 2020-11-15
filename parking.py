@@ -9,10 +9,10 @@ class Parking:
         self.parking_lot = [None for _ in range(self.size)]
         self.age_directory = defaultdict(list)
         self.vehicles_parked = defaultdict(int)
-        self.find_vacant_slots()
+        self.__find_vacant_slots()
         print(f"Created parking of {size} slots")
 
-    def find_vacant_slots(self):
+    def __find_vacant_slots(self):
         self.available_slots = [i+1 for i in range(self.size)]
         heapify(self.available_slots)
 
