@@ -29,6 +29,20 @@ sudo apt install python3.8
 python3 allocation.py <input.txt> output.txt
 ```
 
+## Assumptions
+
+1. There'll be only one Create_parking_lot in complete test file and it'll be at the beginning of the file?
+2. All cars will have a distinct unique registration number.
+3. Commands will be always in right format.
+4. Valid age will be provided.
+
+## Edge Cases :
+
+1. If Slot number is greater than capacity or less than 1, output would be "Slot number {slot_number} does not exist".
+2. If Invalid command is provided, program will break from the execution.
+3. If Parking is full, output for future park commands will be 'Parking Full, Car with vehicle registration number "{vehicle_number}" cant be parked'.
+4. While searching for drivers with age or vehicle number, if no cars are found, output would be "Driver / Vehicle Not Found".
+
 ### Author
 
 Vaibhav Lodha

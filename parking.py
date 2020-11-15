@@ -17,12 +17,15 @@ class Parking:
         heapify(self.available_slots)
 
     def leave(self, slot_number):
-        slot = int(slot_number) - 1
+        slot_number = int(slot_number)
+        if not 0 < slot_number <= self.size:
+            return f"Slot number {slot_number} does not exist"
+        slot = slot_number - 1
         if self.parking_lot[slot]:
             # remove car
             driver = self.parking_lot[slot]
             self.parking_lot[slot] = None
-            heappush(self.available_slots, int(slot_number))
+            heappush(self.available_slots, slot_number)
             self.age_directory[driver.get_driver_age()].remove(driver)
             del self.vehicles_parked[driver.get_vehicle_number()]
             return f'Slot number {slot_number} vacated, the car with vehicle registration number "{driver.get_vehicle_number()}" left the space, the driver of the car was of age {driver.get_driver_age()}'
@@ -44,9 +47,6 @@ class Parking:
         return "Vehicle Not Found"
 
     def park_the_vehicle(self, vehicle_number, age):
-        if vehicle_number in self.vehicles_parked:
-            return "Vehicle Already Parked"
-
         if self.available_slots:
             slot_empty = heappop(self.available_slots)
             driver = Driver(slot_empty, vehicle_number, age)
@@ -55,16 +55,10 @@ class Parking:
             self.vehicles_parked[vehicle_number] = slot_empty
             return f'Car with vehicle registration number "{vehicle_number}" has been parked at slot number {slot_empty}'
 
-        return "Parking Full"
+        return f'Parking Full, Car with vehicle registration number "{vehicle_number}" cant be parked'
 
     def get_slot_number_by_vehicle_number(self, vehicle_number):
         if vehicle_number in self.vehicles_parked:
             return self.vehicles_parked[vehicle_number]
 
         return "Vehicle Not Found"
-
-
-"""print(Parking(1), Driver(1, 1, 1))
-f = (["None" for i in range(5)])
-a, *value = "a b c d".split()
-print(a, *value)"""

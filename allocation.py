@@ -15,11 +15,6 @@ class allocation:
 
         return False
 
-    def is_valid_age(self, age):
-        if int(age) > 0:
-            return True
-        return False
-
     def start(self):
         while True:
             try:
@@ -34,23 +29,15 @@ class allocation:
                     print(self.parking_lot.park_the_vehicle(
                         value[0], value[2]))
                 elif operation == "Slot_numbers_for_driver_of_age":
-                    age = value[0]
-                    if not self.is_valid_age(age):
-                        print("Invalid Age")
-                        continue
-                    print(self.parking_lot.get_slots_by_driver_age(age))
+                    print(self.parking_lot.get_slots_by_driver_age(value[0]))
                 elif operation == "Slot_number_for_car_with_number":
                     print(
                         self.parking_lot.get_slot_number_by_vehicle_number(value[0]))
                 elif operation == "Leave":
                     print(self.parking_lot.leave(value[0]))
                 elif operation == "Vehicle_registration_number_for_driver_of_age":
-                    age = value[0]
-                    if not self.is_valid_age(age):
-                        print("Invalid Age")
-                        continue
                     print(
-                        self.parking_lot.get_vehicle_number_by_driver_age(age))
+                        self.parking_lot.get_vehicle_number_by_driver_age(value[0]))
                 else:
                     print("Invalid operation")
                     break
