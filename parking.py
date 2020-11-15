@@ -27,7 +27,7 @@ class Parking:
     # Private Function which fill heap with all vacant slots
     def __find_vacant_slots(self):
 
-        self.available_“Slot already vacant”slots = [i + 1 for i in range(self.size)]
+        self.available_slots = [i + 1 for i in range(self.size)]
         heapify(self.available_slots)
 
     # Remove The Car from slot_number
