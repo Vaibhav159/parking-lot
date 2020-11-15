@@ -1,4 +1,4 @@
-from Driver import Driver
+from driver import Driver
 from heapq import heapify, heappush, heappop
 from collections import defaultdict
 
@@ -8,12 +8,13 @@ class Parking:
         self.size = size
         self.parking_lot = [None for _ in range(self.size)]
         self.age_directory = defaultdict(list)
-        self.make_heap()
+        self.vehicles_parked = defaultdict(int)
+        self.find_vacant_slots()
         print(f"Created parking of {size} slots")
 
-    def make_heap(self):
-        self.heap = [i+1 for i in range(self.size)]
-        heapify(self.heap)
+    def find_vacant_slots(self):
+        self.available_slots = [i+1 for i in range(self.size)]
+        heapify(self.available_slots)
 
     def leave(self, slot_number):
         slot = int(slot_number) - 1
@@ -21,8 +22,9 @@ class Parking:
             # remove car
             driver = self.parking_lot[slot]
             self.parking_lot[slot] = None
-            heappush(self.heap, int(slot_number))
+            heappush(self.available_slots, int(slot_number))
             self.age_directory[driver.get_driver_age()].remove(driver)
+            del self.vehicles_parked[driver.get_vehicle_number()]
             return f'Slot number {slot_number} vacated, the car with vehicle registration number "{driver.get_vehicle_number()}" left the space, the driver of the car was of age {driver.get_driver_age()}'
 
         return "Slot already vacant"
@@ -42,19 +44,22 @@ class Parking:
         return "Vehicle Not Found"
 
     def park_the_vehicle(self, vehicle_number, age):
-        if self.heap:
-            slot_empty = heappop(self.heap)
+        if vehicle_number in self.vehicles_parked:
+            return "Vehicle Already Parked"
+
+        if self.available_slots:
+            slot_empty = heappop(self.available_slots)
             driver = Driver(slot_empty, vehicle_number, age)
             self.parking_lot[slot_empty - 1] = driver
             self.age_directory[age].append(driver)
+            self.vehicles_parked[vehicle_number] = slot_empty
             return f'Car with vehicle registration number "{vehicle_number}" has been parked at slot number {slot_empty}'
 
         return "Parking Full"
 
     def get_slot_number_by_vehicle_number(self, vehicle_number):
-        for slot, driver in enumerate(self.parking_lot):
-            if driver and driver.get_vehicle_number() == vehicle_number:
-                return slot + 1
+        if vehicle_number in self.vehicles_parked:
+            return self.vehicles_parked[vehicle_number]
 
         return "Vehicle Not Found"
 

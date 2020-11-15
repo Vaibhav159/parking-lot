@@ -1,4 +1,4 @@
-from Parking import Parking
+from parking import Parking
 import re
 
 parking_lot = None
@@ -21,7 +21,7 @@ while True:
             parking_lot = Parking(int(value[0]))
         elif operation == "Park":
             if not check_details(value):
-                print(value)
+                print("Incorrect Values")
                 continue
             print(parking_lot.park_the_vehicle(value[0], value[2]))
         elif operation == "Slot_numbers_for_driver_of_age":
